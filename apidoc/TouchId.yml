@@ -6,7 +6,6 @@ extends: Titanium.Module
 deprecated:
     since: "6.3.0"
 description: |
-
     ### WARNING
     This module has been deprecated in Titanium SDK 6.3.0+ in favor of the [Ti.Identity](https://github.com/appcelerator-modules/titanium-identity) module
     that includes the 1:1 same API's as this one but also more current API's like FaceID-related constants
@@ -33,26 +32,32 @@ description: |
     Add the module as a dependency to your application by adding a **`<module>`** item to the
     **`<modules>`** element of your `tiapp.xml` file:
 
-        <ti:app>
-          ...
-          <modules>
-            <module platform="iphone">ti.touchid</module>
-          </modules>
-          ...
-        </ti:app>
+    ``` xml
+    <ti:app>
+      <!-- ... -->
+      <modules>
+        <module platform="iphone">ti.touchid</module>
+      </modules>
+      <!-- ... -->
+    </ti:app>
+    ```
 
     Use `require()` to access the module from JavaScript:
 
-        var TouchID = require('ti.touchid');
+    ``` javascript
+    var TouchID = require('ti.touchid');
+    ```
 
     The `TouchId` variable is a reference to the module. Make API calls using this reference:
 
-        TouchID.authenticate({
-            reason: 'Verify to modify personal settings',
-            callback: function(e) {
-                Ti.API.info(e);
-            }
-        });
+    ``` javascript
+    TouchID.authenticate({
+        reason: 'Verify to modify personal settings',
+        callback: function(e) {
+            Ti.API.info(e);
+        }
+    });
+    ```
         
     ### Lifetime Notes (iOS-only)
     
@@ -70,7 +75,6 @@ description: |
 
     The module contains a sample application in the
     `<TITANIUM_SDK_HOME>/modules/iphone/ti.touchid/<VERSION>/example/` folder.
-
 methods:
   - name: authenticate
     summary: Initiates the Touch ID authentication process.
@@ -97,7 +101,6 @@ methods:
         used for policy evaluation and an attempt to do so will fail with <Modules.TouchId.ERROR_INVALID_CONTEXT>.
 
         See the "Lifetime Notes (iOS-only)" paragraph in the module paragraph for more infos.
-
     platforms: [iphone, ipad, android]
     since: "6.1.0"
 
@@ -107,13 +110,16 @@ methods:
         On Android this takes into account the `authenticationPolicy`.
 
         Example:
-            var TiTouchId = require("ti.touchid");
-            var result = TiTouchId.deviceCanAuthenticate();
-            if (!result.canAuthenticate) {
-                alert('Message: ' + result.error + '\nCode: ' + result.code);
-            } else {
-                alert('Device can authenticate');
-            }
+
+        ``` javascript
+        var TiTouchId = require("ti.touchid");
+        var result = TiTouchId.deviceCanAuthenticate();
+        if (!result.canAuthenticate) {
+            alert('Message: ' + result.error + '\nCode: ' + result.code);
+        } else {
+            alert('Device can authenticate');
+        }
+        ```
     returns:
         type: DeviceCanAuthenticateResult
 
